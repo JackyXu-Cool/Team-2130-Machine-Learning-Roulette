@@ -14,7 +14,7 @@ Junqi (Jacky) Xu: jxu477@gatech.edu (Role: Initiator, Information Giver)
 Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 
 
-####Project Description: 
+#### Project Description: 
 
 Machine Learning Roulette.
 
