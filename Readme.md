@@ -1,6 +1,6 @@
-###  Machine Learning Roulette - Team 2130
+##  Machine Learning Roulette - Team 2130
 
-#### Team members
+### Team members
 Hyelin Lee: hyelin.lee@gatech.edu (Role: Summarizer)
 
 Yuanzhi (David) Liu: yliu3201@gatech.edu (Role: Opinion Seeker)
@@ -14,7 +14,7 @@ Junqi (Jacky) Xu: jxu477@gatech.edu (Role: Initiator, Information Giver)
 Haoran (**Marty**) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 
 
-#### Project Description: 
+### Project Description: 
 
 **Machine Learning Roulette**
 
