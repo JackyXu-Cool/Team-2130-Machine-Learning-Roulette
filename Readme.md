@@ -11,7 +11,7 @@ Harrison L O'Neal: honeal3@gatech.edu (Role: Clarifier)
 
 Junqi (Jacky) Xu: jxu477@gatech.edu (Role: Initiator, Information Giver)
 
-Haoran (**Marty**) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
+Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 
 
 ### Project Description: 
