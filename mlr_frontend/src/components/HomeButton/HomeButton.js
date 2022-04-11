@@ -7,7 +7,7 @@ import './HomeButton.css';
 const HomeButton = () => {
    return (
        <Link to="/">
-        <Button variant="outline-secondary">
+        <Button variant="outline-secondary" className="btn-lg">
             Home
         </Button>
        </Link>

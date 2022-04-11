@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import img from '../../assets/images/ml_image.png';
 
 import "./HomePage.css";
 
