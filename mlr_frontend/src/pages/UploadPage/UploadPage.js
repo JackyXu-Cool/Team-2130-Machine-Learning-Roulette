@@ -1,9 +1,11 @@
 import React from "react";
+import HomeButton from "../../components/HomeButton/HomeButton";
 
 const UploadPage = () => {
     return (
         <div>
-            <h1>UploadPage</h1>
+            <h1>Step1: Upload</h1>
+            <HomeButton />
         </div>
     );
 };

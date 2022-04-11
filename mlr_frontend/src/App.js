@@ -4,14 +4,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import UploadPage from './pages/UploadPage/UploadPage';
 import ExportPage from './pages/ExportPage/ExportPage';
+import HomePage from './pages/HomePage/HomePage';
 
 const App = () => {
   return (
     <BrowserRouter>
       <React.Fragment>
           <Routes>
-            <Route path="/upload" element={<UploadPage />} />
-            <Route path="/export" element={<ExportPage />} />
+            <Route path="/" element={<HomePage />} exact/>
+            <Route path="/upload" element={<UploadPage /> } exact/>
+            <Route path="/export" element={<ExportPage />} exact/>
           </Routes>
       </React.Fragment>
     </BrowserRouter>
