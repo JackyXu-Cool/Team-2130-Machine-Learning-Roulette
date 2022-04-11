@@ -1,0 +1,18 @@
+.nav-content {
+    font-size: 14pt;
+}
+
+.nav-content-text {
+    margin-left: 5pt;
+    margin-right: 5pt;
+}
+
+.body {
+    margin-top: 70pt;
+    position: absolute;
+    width: 100%;
+    color: #4C4E52;
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+}
