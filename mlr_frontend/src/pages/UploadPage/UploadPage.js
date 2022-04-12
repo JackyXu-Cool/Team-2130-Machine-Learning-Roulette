@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import HomeButton from "../../components/HomeButton/HomeButton";
@@ -11,6 +12,9 @@ const UploadPage = () => {
     const [file, setFile] = useState(null);
     const [uploadStage, setUploadStage] = useState(1);
     const [selectedModels, setSelectedModels] = useState([]);
+    // TODO: We need to add onChange listener in TextInputContainer
+    const [parameterValues, setParameterValues] = useState([]);
+    const navigate = useNavigate();
 
     const models = ["KMeans", "Principal Component Analysis", "Hierarcical Clustering", "KNN"];
     const parameters = ["Number of Clusters", "Random Seed", "Epochs", "Training(%)"];
@@ -39,9 +43,10 @@ const UploadPage = () => {
         }
     }
 
-    // TODO: Actually send the request to the server to run ML model
+    // TODO: Actually send the request to the server to run ML model. Need to pass in some real data to the state obejct
     function handleStartTraining() {
-        
+        // TODO: We need to check that if all the parameters value are defined.  
+        navigate("/result", { state: {} });
     }
 
     let uploadStageOneHtml, uploadStageTwoHtml, uploadStageThreeHtml = [];
@@ -88,7 +93,7 @@ const UploadPage = () => {
             </div>
             <TextInputContainer inputs={parameters}/>
             <Button variant="outline-secondary" 
-                    style={{height: "100px", width: "180px", position: "absolute", bottom: 10, right: 20}}
+                    style={{height: "70px", width: "180px", position: "absolute", bottom: 10, right: 20}}
                     onClick={handleStartTraining}>
                 Start Training
             </Button>
