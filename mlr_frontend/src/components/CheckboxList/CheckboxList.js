@@ -3,7 +3,7 @@ import React from "react";
 import "./CheckboxList.css";
 
 const CheckboxList = (props) => {
-    const checkList = ["KMeans", "Principal Component Analysis", "Hierarcical Clustering", "KNN"];
+    const checkList = props.checkList;
 
     const handleCheck = (event) => {
         let updatedList = [...props.checked];
@@ -19,7 +19,7 @@ const CheckboxList = (props) => {
 
     return (
         <div className="checkList">
-            <div className="title">Models:</div>
+            <div className="title">{props.title}:</div>
             <div className="list-container">
                 {checkList.map((item, index) => (
                 <div key={index}>

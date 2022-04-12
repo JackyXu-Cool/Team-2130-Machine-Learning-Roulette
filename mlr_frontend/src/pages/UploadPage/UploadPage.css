@@ -25,10 +25,21 @@
   }
 
 .upload_step_item {
-    padding:1em;
+    padding: 1em;
     box-sizing: border-box;
     height: 160px;
-    width: 40%;
-    display:flex;
+    width: 30%;
+    display: flex;
     flex-direction: column;
+}
+
+.upload_back_next {
+    margin: auto;
+    width: 30%;
+}
+
+.upload_back_next button {
+    height: 50px;
+    margin-right: 10pt;
+    margin-top: 80pt;
 }
