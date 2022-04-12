@@ -1,0 +1,25 @@
+.export-main {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.export-element {
+    margin: auto;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.export-element label {
+    white-space: nowrap;
+    margin-right: 10pt;
+}
+
+.export-link-copied-text {
+    color: #D3D3D3;
+    margin-left: 10pt;
+}
+    
