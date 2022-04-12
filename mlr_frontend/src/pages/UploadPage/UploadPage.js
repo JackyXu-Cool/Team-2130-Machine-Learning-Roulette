@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import HomeButton from "../../components/HomeButton/HomeButton";
 import CheckboxList from "../../components/CheckboxList/CheckboxList";
+import TextInputContainer from "../../components/TextInputContainer/TextInputContainer";
 import "./UploadPage.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +13,7 @@ const UploadPage = () => {
     const [selectedModels, setSelectedModels] = useState([]);
 
     const models = ["KMeans", "Principal Component Analysis", "Hierarcical Clustering", "KNN"];
+    const parameters = ["Number of Clusters", "Random Seed", "Epochs", "Training(%)"];
 
     function handleFileSelected(event) {
         setFile(event.target.files[0]);
@@ -29,10 +31,17 @@ const UploadPage = () => {
         document.getElementById("uploadedFile").value = null;
     }
 
+    // TODO: For the future, we need to send it to the server to determine the parameters
+    // Parameters are usually dependent on the selected model.
     function handleNextButton() {
         if (selectedModels.length >= 1) {
             setUploadStage(3);
         }
+    }
+
+    // TODO: Actually send the request to the server to run ML model
+    function handleStartTraining() {
+        
     }
 
     let uploadStageOneHtml, uploadStageTwoHtml, uploadStageThreeHtml = [];
@@ -48,7 +57,7 @@ const UploadPage = () => {
             </div>
         </div>;
 
-    const uploadStageTwo =
+    const uploadStageTwoWithBtns =
         <div className="upload_step_container">
             <div className="upload_step_item">
                 <h4>Step2: Select Models</h4>
@@ -63,17 +72,31 @@ const UploadPage = () => {
                 </Button>
             </ButtonGroup>
         </div>;
+    
+    const uploadStageTwoWithoutBtns = 
+        <div className="upload_step_container">
+            <div className="upload_step_item">
+                <h4>Step2: Select Models</h4>
+            </div>
+            <CheckboxList checked={selectedModels} setChecked={setSelectedModels} checkList={models} title={"Models"}/>
+        </div>;
 
     const uploadStageThree = 
         <div className="upload_step_container" style={{border: "none"}}>
             <div className="upload_step_item">
                 <h4>Step3: Input Parameters</h4>
             </div>
+            <TextInputContainer inputs={parameters}/>
+            <Button variant="outline-secondary" 
+                    style={{height: "100px", width: "180px", position: "absolute", bottom: 10, right: 20}}
+                    onClick={handleStartTraining}>
+                Start Training
+            </Button>
         </div>;
 
     uploadStageOneHtml = [uploadStageOne];
-    uploadStageTwoHtml = [uploadStageOne, uploadStageTwo];
-    uploadStageThreeHtml = [uploadStageOne, uploadStageTwo, uploadStageThree];
+    uploadStageTwoHtml = [uploadStageOne, uploadStageTwoWithBtns];
+    uploadStageThreeHtml = [uploadStageOne, uploadStageTwoWithoutBtns, uploadStageThree];
  
     let html;
 
