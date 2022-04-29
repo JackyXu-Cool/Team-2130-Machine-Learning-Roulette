@@ -1,0 +1,19 @@
+.authentication_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.authentication {
+  width: 90%;
+  max-width: 25rem;
+  text-align: center;
+}
+  
+.authentication form {
+  margin-bottom: 1rem;
+}
+
+.authentication button {
+  margin-top: 10pt;
+}
