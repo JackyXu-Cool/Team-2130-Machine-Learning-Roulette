@@ -12,8 +12,7 @@ const UploadPage = () => {
     const [file, setFile] = useState(null);
     const [uploadStage, setUploadStage] = useState(1);
     const [selectedModels, setSelectedModels] = useState([]);
-    // TODO: We need to add onChange listener in TextInputContainer
-    const [parameterValues, setParameterValues] = useState([]);
+    const [parameterValues, setParameterValues] = useState({});
     const navigate = useNavigate();
 
     const models = ["KMeans", "Principal Component Analysis", "Hierarcical Clustering", "KNN"];
@@ -91,7 +90,7 @@ const UploadPage = () => {
             <div className="upload_step_item">
                 <h4>Step3: Input Parameters</h4>
             </div>
-            <TextInputContainer inputs={parameters}/>
+            <TextInputContainer inputs={parameters} parameterValues={parameterValues} setParameterValues={setParameterValues}/>
             <Button variant="outline-secondary" 
                     style={{height: "70px", width: "180px", position: "absolute", bottom: 10, right: 20}}
                     onClick={handleStartTraining}>

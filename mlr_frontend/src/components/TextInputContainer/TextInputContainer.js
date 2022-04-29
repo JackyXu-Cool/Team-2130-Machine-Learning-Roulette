@@ -1,11 +1,19 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import "./TextInputContainer.css";
 
 const TextInputContainer = (props) => {
+    let parameterValues = props.parameterValues;
+
+    const handleChangeInput = (event) => {
+        let temp = {...parameterValues};
+        let paramterName = event.target.ariaLabel;
+        temp[paramterName] = event.target.value;
+        props.setParameterValues(temp);
+    }
+
     return (
         <InputGroup className="mb-3 inputs_container">
             {props.inputs.map((inputName, index) => (
@@ -14,6 +22,7 @@ const TextInputContainer = (props) => {
                         <InputGroup.Text style={{ marginBottom: "5pt" }}>{inputName}</InputGroup.Text>
                         <FormControl
                             aria-label={generateIdFromString(inputName)}
+                            onChange={handleChangeInput}
                         />
                     </div>
                 </React.Fragment>
