@@ -15,5 +15,11 @@
 }
 
 .authentication button {
-  margin-top: 10pt;
+  margin: 10pt auto;
+  display: block;
+}
+
+.authentication button:focus {
+  outline: none;
+  box-shadow: none;
 }

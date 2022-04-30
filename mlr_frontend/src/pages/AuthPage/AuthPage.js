@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -8,7 +8,42 @@ import Card from "../../components/Card/Card";
 import "./AuthPage.css";
 
 const AuthPage = () => {
-    // TODO: Input value update & Form submit & Swithc to register mode
+    const [isLogInMode, setLogInMode] = useState(true);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function switchMode() {
+        setLogInMode(!isLogInMode);
+    }
+
+    function onChangeEmailInput(event) {
+        setEmail(event.target.value);
+    }
+
+    function onChangePasswordInput(event) {
+        setPassword(event.target.value);
+    }
+
+    // TODO: Form submission (send backend request)
+    function submitForm() {
+        if (isLogInMode) {
+
+        } else {
+
+        }
+    }
+
+    let buttonGroupHtml =
+    <React.Fragment>
+        <Button variant="secondary" onClick={submitForm}>
+            {isLogInMode ? "Login" : "Sign Up"}
+        </Button>
+        <Button variant="outline-secondary" onClick={switchMode}>
+            Switch to {isLogInMode ? "Sign Up" : "Login"}
+        </Button>
+    </React.Fragment>;
+
     return (
         <React.Fragment>
             <Navbar collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
@@ -27,12 +62,10 @@ const AuthPage = () => {
                     <hr />
                     <form>
                         <p style={{ marginBottom: "5pt", fontWeight: 500 }}>Email Address</p>
-                        <FormControl />
+                        <FormControl onChange={onChangeEmailInput}/>
                         <p style={{ marginBottom: "5pt", fontWeight: 500 }}>Password</p>
-                        <FormControl type="password" />
-                        <Button variant="outline-secondary">
-                            XXX
-                        </Button>
+                        <FormControl type="password" onChange={onChangePasswordInput}/>
+                        {buttonGroupHtml}
                     </form>
                 </Card>
             </div>
