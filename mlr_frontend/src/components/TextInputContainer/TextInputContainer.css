@@ -1,11 +1,11 @@
 .inputs_container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 50%;
-    margin: 5pt;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  margin: 5pt;
 }
 
 .textInput {
-    padding: 5pt;
+  padding: 5pt;
 }

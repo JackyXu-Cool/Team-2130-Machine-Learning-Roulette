@@ -1,48 +1,44 @@
-
 .upload_step_container {
-    margin-left: 10pt;
-    font-size: 12pt;
-    color: #4C4E52;
-    font-weight: 500;
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #2b2d2f;
+  margin-left: 10pt;
+  font-size: 12pt;
+  color: #4c4e52;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #2b2d2f;
 }
 
 .uploadButton {
-    height: 50px;
-    width: 220px;
-    font-size: 20px;
-    background-color: white;
-    border: 2px solid #4b5763;
-    color: #4C4E52;
-    font-weight: 500;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-top: 10pt;
-  }
+  height: 50px;
+  width: 220px;
+  font-size: 20px;
+  background-color: white;
+  border: 2px solid #4b5763;
+  color: #4c4e52;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 10pt;
+}
 
 .upload_step_item {
-    padding: 1em;
-    box-sizing: border-box;
-    height: 160px;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
+  padding: 1em;
+  box-sizing: border-box;
+  height: 160px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
 }
 
 .upload_back_next {
-    margin: auto;
-    width: 30%;
+  margin: auto;
+  width: 30%;
 }
 
 .upload_back_next button {
-    height: 50px;
-    margin-right: 10pt;
-    margin-top: 80pt;
+  height: 50px;
+  margin-right: 10pt;
+  margin-top: 80pt;
 }
-
-
-

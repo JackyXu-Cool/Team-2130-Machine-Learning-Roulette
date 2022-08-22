@@ -20,12 +20,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.js\"",
+    "eslint": "eslint ./src"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "eslint:recommended",
+      "plugin:react/recommended"
     ]
   },
   "browserslist": {
@@ -39,5 +41,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "prettier": "^2.7.1"
   }
 }

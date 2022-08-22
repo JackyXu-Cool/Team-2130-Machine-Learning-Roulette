@@ -1,25 +1,25 @@
 .checkList {
-    margin-left: 10pt;
-    margin-right: 20pt;
+  margin-left: 10pt;
+  margin-right: 20pt;
 }
 
 .title {
-    font-size: 22px;
-    margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 .list-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
 }
 
 .checked-item,
 .not-checked-item {
-    margin-left: 10px;
+  margin-left: 10px;
 }
-  
+
 .checked-item {
-    color: #7b68ee;
+  color: #7b68ee;
 }
