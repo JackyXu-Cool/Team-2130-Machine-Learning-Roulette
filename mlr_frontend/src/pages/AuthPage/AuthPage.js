@@ -27,7 +27,6 @@ const AuthPage = () => {
 
   // TODO: Form submission (send backend request)
   function submitForm() {
-    console.log('email·' + email + '-·password·' + password);
     if (isLogInMode) {
       console.log('is Login mode');
     } else {

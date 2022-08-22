@@ -12,9 +12,7 @@ const ExportPage = () => {
   }
 
   // TODO: use third party library such as SendGrid to send email to user
-  function handleSendEmail() {
-    console.log('email is ' + email);
-  }
+  function handleSendEmail() { }
 
   function handleCopyToClipboard() {
     navigator.clipboard.writeText(window.location.href);

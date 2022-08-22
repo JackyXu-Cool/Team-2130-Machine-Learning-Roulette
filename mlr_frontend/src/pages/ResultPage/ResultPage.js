@@ -14,8 +14,6 @@ const ResultPage = () => {
   }
 
   function handleExportBtn() {
-    // TODO: console here to avoid linting error
-    console.log('state data ' + state);
     navigate('/export');
   }
 
@@ -31,13 +29,15 @@ const ResultPage = () => {
         <Button
           variant="outline-secondary"
           className="symmetric-button-group-first"
-          onClick={handleHomeBtn}>
+          onClick={handleHomeBtn}
+        >
           Home
         </Button>
         <Button
           variant="outline-secondary"
           className="symmetric-button-group-second"
-          onClick={handleExportBtn}>
+          onClick={handleExportBtn}
+        >
           Export Result
         </Button>
       </div>

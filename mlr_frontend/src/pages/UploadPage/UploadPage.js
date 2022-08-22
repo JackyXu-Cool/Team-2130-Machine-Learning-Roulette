@@ -115,7 +115,8 @@ const UploadPage = () => {
       <Button
         variant="outline-secondary"
         style={{ height: '70px', width: '180px', position: 'absolute', bottom: 10, right: 20 }}
-        onClick={handleStartTraining}>
+        onClick={handleStartTraining}
+      >
         Start Training
       </Button>
     </div>
