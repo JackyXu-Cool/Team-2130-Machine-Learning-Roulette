@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "master" ]
 
+defaults:
+ run:
+  working-directory: ./mlr_frontend
+
 jobs:
   build:
 
@@ -24,14 +28,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-      working-directory: ./mlr_frontend
     - name: Install dependecies
       run: npm install
-      working-directory: ./mlr_frontend
     - name: Run linting test
       run: npm run eslint
-      working-directory: ./mlr_frontend
     - name: Format code with prettier
       run: npm run format
-      working-directory: ./mlr_frontend
