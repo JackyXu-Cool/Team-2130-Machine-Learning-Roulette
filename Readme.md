@@ -1,5 +1,7 @@
 ## Machine Learning Roulette - Team 2130
 
+![](https://github.com/JackyXu-Cool/Team-2130-Machine-Learning-Roulette/actions/workflows/node.js.yml/badge.svg)
+
 ### Team members
 
 Hyelin Lee: hyelin.lee@gatech.edu (Role: Summarizer)
