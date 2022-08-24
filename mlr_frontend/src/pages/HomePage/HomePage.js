@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 
 import './HomePage.css';
 
+// TODO: Log In button is disabled for now.
 const HomePage = () => {
   return (
     <div className="main">
@@ -11,7 +12,7 @@ const HomePage = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" />
           <Nav className="nav-content">
-            <Nav.Link className="nav-content-text" href="/auth">
+            <Nav.Link className="nav-content-text" href="/auth" disabled="true">
               Log In
             </Nav.Link>
             <Nav.Link className="nav-content-text" href="/upload">
