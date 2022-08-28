@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import HomeButton from '../../components/HomeButton/HomeButton';
@@ -14,6 +15,7 @@ const UploadPage = () => {
   const [selectedModels, setSelectedModels] = useState([]);
   const [parameterValues, setParameterValues] = useState({});
   const navigate = useNavigate();
+  const fileReader = new FileReader();
 
   const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN'];
   const parameters = ['Number of Clusters', 'Random Seed', 'Epochs', 'Training(%)'];
@@ -23,9 +25,17 @@ const UploadPage = () => {
   }
 
   function handleFileUpload() {
+    // TODO: current CSV output is a pure string. Convert it to our desired data type later on
     if (file) {
-      setUploadStage(2);
+      fileReader.onload = function (event) {
+        const csvOutput = event.target.result;
+        axios
+          .post('http://127.0.0.1:5000/upload', { file: csvOutput })
+          .then((response) => console.log(response));
+      };
+      fileReader.readAsText(file);
     }
+    setUploadStage(2);
   }
 
   function handleBackButton() {
@@ -58,7 +68,7 @@ const UploadPage = () => {
         <h4>Step1: Upload Dataset</h4>
       </div>
       <div className="upload_step_item">
-        <input id="uploadedFile" type="file" onChange={handleFileSelected} />
+        <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleFileSelected} />
         <button className="uploadButton" onClick={handleFileUpload}>
           Upload
         </button>
@@ -115,8 +125,7 @@ const UploadPage = () => {
       <Button
         variant="outline-secondary"
         style={{ height: '70px', width: '180px', position: 'absolute', bottom: 10, right: 20 }}
-        onClick={handleStartTraining}
-      >
+        onClick={handleStartTraining}>
         Start Training
       </Button>
     </div>
