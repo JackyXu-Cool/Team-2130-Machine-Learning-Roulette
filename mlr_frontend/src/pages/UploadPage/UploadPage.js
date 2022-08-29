@@ -31,11 +31,17 @@ const UploadPage = () => {
         const csvOutput = event.target.result;
         axios
           .post('http://127.0.0.1:5000/upload', { file: csvOutput })
-          .then((response) => console.log(response));
+          .then((response) => {
+            setUploadStage(2);
+            console.log(response);
+          })
+          .catch((error) => {
+            // TODO: Add error modal and remain in this step
+            console.log(error.message);
+          });
       };
       fileReader.readAsText(file);
     }
-    setUploadStage(2);
   }
 
   function handleBackButton() {
@@ -55,7 +61,19 @@ const UploadPage = () => {
   // TODO: Actually send the request to the server to run ML model. Need to pass in some real data to the state obejct
   function handleStartTraining() {
     // TODO: We need to check that if all the parameters value are defined.
-    navigate('/result', { state: {} });
+    if (selectedModels !== null && parameterValues !== null) {
+      axios
+        .post('http://127.0.0.1:5000/training', { models: selectedModels, param: parameterValues })
+        .then((response) => {
+          console.log(response);
+          // TODO: Send response to result page
+          navigate('/result', { state: {} });
+        })
+        .catch((err) => {
+          // TODO: Add error modal as well
+          console.log(err.message);
+        });
+    }
   }
 
   let uploadStageOneHtml,
