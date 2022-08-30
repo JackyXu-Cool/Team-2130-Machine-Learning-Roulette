@@ -22,10 +22,11 @@
 
 .modal__content {
     padding: 1rem 0.5rem;
+    font-size: large;
 }
 
 .modal__footer {
-    padding: 1rem 0.5rem;
+    padding: 0.3rem 0.5rem;
 }
 
 @media (min-width: 768px) {
