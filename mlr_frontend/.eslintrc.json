@@ -22,7 +22,12 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "prettier/prettier": "warn",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "prettier/prettier": [
+      "off",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }

@@ -12,7 +12,7 @@ const ExportPage = () => {
   }
 
   // TODO: use third party library such as SendGrid to send email to user
-  function handleSendEmail() { }
+  function handleSendEmail() {}
 
   function handleCopyToClipboard() {
     navigator.clipboard.writeText(window.location.href);
@@ -32,7 +32,8 @@ const ExportPage = () => {
         <Button
           variant="outline-secondary"
           style={{ width: '250px', height: '45px', marginLeft: '10px' }}
-          onClick={handleSendEmail}>
+          onClick={handleSendEmail}
+        >
           Send
         </Button>
       </div>
@@ -41,7 +42,8 @@ const ExportPage = () => {
         <Button
           variant="outline-secondary"
           style={{ width: '100px', height: '35px', marginLeft: '20px' }}
-          onClick={handleCopyToClipboard}>
+          onClick={handleCopyToClipboard}
+        >
           Create
         </Button>
         {copied ? (

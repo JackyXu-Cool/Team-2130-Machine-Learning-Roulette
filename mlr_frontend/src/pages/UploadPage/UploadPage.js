@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import HomeButton from '../../components/HomeButton/HomeButton';
 import CheckboxList from '../../components/CheckboxList/CheckboxList';
 import TextInputContainer from '../../components/TextInputContainer/TextInputContainer';
+import ErrorModal from '../../components/Modal/ErrorModal';
+import { useHttpClient } from '../../hooks/http-hooks';
 import './UploadPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,6 +15,7 @@ const UploadPage = () => {
   const [uploadStage, setUploadStage] = useState(1);
   const [selectedModels, setSelectedModels] = useState([]);
   const [parameterValues, setParameterValues] = useState({});
+  const { error, sendRequest, errorHandler } = useHttpClient();
   const navigate = useNavigate();
   const fileReader = new FileReader();
 
@@ -29,15 +31,15 @@ const UploadPage = () => {
     if (file) {
       fileReader.onload = function (event) {
         const csvOutput = event.target.result;
-        axios
-          .post('http://127.0.0.1:5000/upload', { file: csvOutput })
+        sendRequest('http://127.0.0.1:5000/upload', 'POST', JSON.stringify({ file: csvOutput }), {
+          'Content-Type': 'application/json'
+        })
           .then((response) => {
             setUploadStage(2);
             console.log(response);
           })
-          .catch((error) => {
-            // TODO: Add error modal and remain in this step
-            console.log(error.message);
+          .catch((err) => {
+            console.log(err);
           });
       };
       fileReader.readAsText(file);
@@ -62,17 +64,16 @@ const UploadPage = () => {
   function handleStartTraining() {
     // TODO: We need to check that if all the parameters value are defined.
     if (selectedModels !== null && parameterValues !== null) {
-      axios
-        .post('http://127.0.0.1:5000/training', { models: selectedModels, param: parameterValues })
-        .then((response) => {
-          console.log(response);
-          // TODO: Send response to result page
-          navigate('/result', { state: {} });
-        })
-        .catch((err) => {
-          // TODO: Add error modal as well
-          console.log(err.message);
-        });
+      sendRequest(
+        'http://127.0.0.1:5000/training',
+        'POST',
+        JSON.stringify({ models: selectedModels, param: parameterValues }),
+        { 'Content-Type': 'application/json' }
+      ).then((response) => {
+        console.log(response);
+        // TODO: Send response to result page
+        navigate('/result', { state: {} });
+      });
     }
   }
 
@@ -143,7 +144,8 @@ const UploadPage = () => {
       <Button
         variant="outline-secondary"
         style={{ height: '70px', width: '180px', position: 'absolute', bottom: 10, right: 20 }}
-        onClick={handleStartTraining}>
+        onClick={handleStartTraining}
+      >
         Start Training
       </Button>
     </div>
@@ -165,6 +167,7 @@ const UploadPage = () => {
 
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={errorHandler} />
       <HomeButton />
       <div className="main">{html}</div>
     </React.Fragment>
