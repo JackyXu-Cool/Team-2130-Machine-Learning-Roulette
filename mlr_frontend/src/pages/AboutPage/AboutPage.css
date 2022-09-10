@@ -1,0 +1,36 @@
+.nav-content {
+    font-size: 14pt;
+}
+
+.nav-content-text {
+    margin-left: 5pt;
+    margin-right: 5pt;
+}
+
+.title {
+    margin-top: 70pt;
+    width: 100%;
+    color: #4c4e52;
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+.subheading {
+    margin-top: 20pt;
+    margin-left: 30pt;
+    width: 100%;
+    color: #4c4e52;
+    text-align: left;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.text {
+    margin: 10pt 30pt 0pt 30pt;
+    width: 90%;
+    color: #4c4e52;
+    text-align: left;
+    font-size: 16pt;
+    font-weight: normal;
+}
