@@ -25,7 +25,7 @@ const HomePage = () => {
                     </Nav>
                 </Container>
             </Navbar>
-            <div className="title">
+            <div className="about_title">
                 <p>About</p>
             </div>
             <div className="subheading">

@@ -19,7 +19,7 @@ const CheckboxList = (props) => {
 
   return (
     <div className="checkList">
-      <div className="title">{props.title}:</div>
+      <div className="checklist_title">{props.title}:</div>
       <div className="list-container">
         {checkList.map((item, index) => (
           <div key={index}>

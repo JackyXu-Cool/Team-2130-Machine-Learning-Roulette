@@ -12,10 +12,10 @@ const HomePage = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" />
           <Nav className="nav-content">
-              <Nav.Link className="nav-content-text" href="/about" >
-                  About
-              </Nav.Link>
-            <Nav.Link className="nav-content-text" href="/auth" disabled="true">
+            <Nav.Link className="nav-content-text" href="/about" >
+              About
+            </Nav.Link>
+            <Nav.Link className="nav-content-text" href="/auth">
               Log In
             </Nav.Link>
             <Nav.Link className="nav-content-text" href="/upload">
