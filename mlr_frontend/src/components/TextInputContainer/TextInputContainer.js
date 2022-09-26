@@ -9,8 +9,8 @@ const TextInputContainer = (props) => {
 
   const handleChangeInput = (event) => {
     let temp = { ...parameterValues };
-    let paramterName = event.target.ariaLabel;
-    temp[paramterName] = event.target.value;
+    let parameterName = event.target.ariaLabel;
+    temp[parameterName] = event.target.value;
     props.setParameterValues(temp);
   };
 

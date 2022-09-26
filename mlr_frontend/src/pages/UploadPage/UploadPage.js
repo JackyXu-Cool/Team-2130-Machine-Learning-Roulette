@@ -17,7 +17,7 @@ const UploadPage = () => {
   const [parameterValues, setParameterValues] = useState({});
   const { error, sendRequest, errorHandler } = useHttpClient();
   const navigate = useNavigate();
-  const fileReader = new FileReader();
+  const formData = new FormData();
 
   const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN'];
   const parameters = ['Number of Clusters', 'Random Seed', 'Epochs', 'Training(%)'];
@@ -29,20 +29,15 @@ const UploadPage = () => {
   function handleFileUpload() {
     // TODO: current CSV output is a pure string. Convert it to our desired data type later on
     if (file) {
-      fileReader.onload = function (event) {
-        const csvOutput = event.target.result;
-        sendRequest('http://127.0.0.1:5000/upload', 'POST', JSON.stringify({ file: csvOutput }), {
-          'Content-Type': 'application/json'
+      formData.append("file", file);
+      sendRequest('http://127.0.0.1:5000/upload', 'POST', formData)
+        .then((response) => {
+          setUploadStage(2);
+          console.log(response);
         })
-          .then((response) => {
-            setUploadStage(2);
-            console.log(response);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      };
-      fileReader.readAsText(file);
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
@@ -63,11 +58,11 @@ const UploadPage = () => {
   // TODO: Actually send the request to the server to run ML model. Need to pass in some real data to the state obejct
   function handleStartTraining() {
     // TODO: We need to check that if all the parameters value are defined.
-    if (selectedModels !== null && parameterValues !== null) {
+    if (selectedModels.length > 0 && parameterValues !== null) {
       sendRequest(
         'http://127.0.0.1:5000/training',
         'POST',
-        JSON.stringify({ models: selectedModels, param: parameterValues }),
+        JSON.stringify({ models: selectedModels, params: parameterValues }),
         { 'Content-Type': 'application/json' }
       ).then((response) => {
         console.log(response);
