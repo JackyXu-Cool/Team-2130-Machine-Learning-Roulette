@@ -88,7 +88,7 @@ const UploadPage = () => {
       </div>
       <div className="upload_step_item">
         <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleFileSelected} />
-        <button className="uploadButton" onClick={handleFileUpload}>
+        <button className="uploadButton" onClick={handleFileUpload} disabled={uploadStage == 1 ? false : true}>
           Upload
         </button>
       </div>
