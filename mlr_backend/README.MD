@@ -25,6 +25,8 @@ pip install Flask-JWT
 pip install -U flask-cors
 pip install numpy
 pip install requests
+pip install pandas
+pip install flask_caching
 ```
 Run backend:
 ```
