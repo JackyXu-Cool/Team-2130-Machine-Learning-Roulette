@@ -11,6 +11,12 @@ To activate it:
 ```shell
 ./venv/Scripts/activate
 ```
+
+If above gives error, try:
+```shell
+source venv/bin/activate
+```
+
 To install necessary python library after you activate the virtual environment:
 ```shell
 pip install Flask
