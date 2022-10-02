@@ -26,10 +26,6 @@ const UploadPage = () => {
     setFile(event.target.files[0]);
   }
 
-  exports.sendData = functions.https.onRequest((data, context) => {
-
-  })
-
   function handleFileUpload() {
     // TODO: current CSV output is a pure string. Convert it to our desired data type later on
     if (file) {
