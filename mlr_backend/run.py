@@ -37,6 +37,9 @@ def trainData():
     dataset = cache.get("dataset")
     dataset_in_np_array = np.genfromtxt(StringIO(dataset),
                                         delimiter=',')
+    labels = cache.get("labels")
+    labels_in_np_array = np.genfromtxt(StringIO(labels),
+                                        delimiter=',')
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, int(params['Number_of_Clusters']))
