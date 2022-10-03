@@ -26,5 +26,14 @@ Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 ### Bug Fixes
 1. Large margin in "Upload: step2"
 
+## Version 0.2.0
+### New Features
+1. Implemented KMeans Algorithm that takes in CSV dataset and # of clusters as parameters
+2. Built backend API that call KMeans algorithm to get cluster assessment
+3. User authentication (Register and Login)
+4. Deploy the website (https://www.mleroulette.com/)
+### Bug Fixes
+1. Disabled upload button when the user is not in the first stage of upload.
+
 # Client
 Jay Lofstead, Sandia National Laboratories
