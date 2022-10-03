@@ -27,6 +27,8 @@ pip install numpy
 pip install requests
 pip install pandas
 pip install flask_caching
+pip install sklearn
+pip install pytest
 ```
 Run backend:
 ```
