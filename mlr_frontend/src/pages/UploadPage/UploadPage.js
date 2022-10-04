@@ -11,7 +11,8 @@ import './UploadPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UploadPage = () => {
-  const [file, setFile] = useState(null);
+  const [dataset, setDataset] = useState(null);
+  const [yLabel, setYLabel] = useState(null);
   const [uploadStage, setUploadStage] = useState(1);
   const [selectedModels, setSelectedModels] = useState([]);
   const [parameterValues, setParameterValues] = useState({});
@@ -22,14 +23,20 @@ const UploadPage = () => {
   const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN'];
   const parameters = ['Number of Clusters', 'Random Seed', 'Epochs', 'Training(%)'];
 
-  function handleFileSelected(event) {
-    setFile(event.target.files[0]);
+  function handleDatasetSelected(event) {
+    setDataset(event.target.files[0]);
+  }
+
+  function handleYLabelSelected(event) {
+    setYLabel(event.target.files[0]);
   }
 
   function handleFileUpload() {
-    // TODO: current CSV output is a pure string. Convert it to our desired data type later on
-    if (file) {
-      formData.append("file", file);
+    if (dataset) {
+      formData.append("file", dataset);
+      if (yLabel) {
+        formData.append("ylabel", yLabel);
+      }
       sendRequest('http://127.0.0.1:5000/upload', 'POST', formData)
         .then((response) => {
           setUploadStage(2);
@@ -42,7 +49,8 @@ const UploadPage = () => {
   }
 
   function handleBackButton() {
-    setFile(null);
+    setDataset(null);
+    setYLabel(null);
     setUploadStage(1);
     document.getElementById('uploadedFile').value = null;
   }
@@ -77,17 +85,27 @@ const UploadPage = () => {
     uploadStageThreeHtml = [];
 
   const uploadStageOne = (
-    <div className="upload_step_container">
-      <div className="upload_step_item">
-        <h4>Step1: Upload Dataset</h4>
+    <React.Fragment>
+      <div className="upload_step_container" style={{ borderBottom: 'none' }}>
+        <div className="upload_step_item">
+          <h4>Step 1: Upload Dataset</h4>
+        </div>
+        <div className="upload_step_item">
+          <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleDatasetSelected} />
+        </div>
       </div>
-      <div className="upload_step_item">
-        <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleFileSelected} />
-        <button className="uploadButton" onClick={handleFileUpload} disabled={uploadStage == 1 ? false : true}>
-          Upload
-        </button>
+      <div className="upload_step_container">
+        <div className="upload_step_item">
+          <h4>Step 1b: Upload Y-Labels for accuracy comparison (Optional)</h4>
+        </div>
+        <div className="upload_step_item">
+          <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleYLabelSelected} />
+          <button className="uploadButton" onClick={handleFileUpload} disabled={uploadStage == 1 ? false : true}>
+            Upload
+          </button>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 
   const uploadStageTwoWithBtns = (
@@ -138,7 +156,7 @@ const UploadPage = () => {
       />
       <Button
         variant="outline-secondary"
-        style={{ height: '70px', width: '180px', position: 'absolute', bottom: 0, right: 20 }}
+        style={{ height: '70px', width: '180px', position: 'absolute', bottom: 20, right: 20 }}
         onClick={handleStartTraining}
       >
         Start Training
