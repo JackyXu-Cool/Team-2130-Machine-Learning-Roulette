@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import UserPool from "./UserPool";
+
+//Method to Sign up
 const Signup = () => {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
@@ -7,6 +9,7 @@ const Signup = () => {
     const onSubmit = (event) =>{
         event.preventDefault();
         UserPool.signUp(email,password,[],null,(err,data) =>{
+            //if user signup password not fit requirement, log error
             if(err){
                 console.log(err);
             }
