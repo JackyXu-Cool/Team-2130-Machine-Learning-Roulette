@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import UserPool from "./UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 
+
 const Login = () => {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
@@ -22,6 +23,8 @@ const Login = () => {
         user.authenticateUser(authDetails, {
             onSuccess: (data) => {
                 console.log("onSuccess: ", data);
+
+
             },
             onFailure: (err) => {
                 console.log("onFailure: ", err);
@@ -37,9 +40,9 @@ const Login = () => {
                     value = {email}
                     onChange={(event) => setEmail(event.target.value)}
                 ></input>
-                <p style={{ marginBottom: '5pt', fontWeight: 500 }}>Email Address</p>
+                <p style={{ marginBottom: '5pt', fontWeight: 500 }}>Password</p>
                 <input
-                    value = {password}
+                    value = {password} type = "password"
                     onChange={(event) => setPassword(event.target.value)} 
                 ></input>       
 

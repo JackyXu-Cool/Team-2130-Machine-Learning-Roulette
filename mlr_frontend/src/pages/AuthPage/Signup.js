@@ -25,7 +25,7 @@ const Signup = () => {
                     value = {email}
                     onChange={(event) => setEmail(event.target.value)}
                 ></input>
-                <p style={{ marginBottom: '5pt', fontWeight: 500 }}>Email Address</p>
+                <p style={{ marginBottom: '5pt', fontWeight: 500 }}>Password</p>
                 <input
                     value = {password}
                     onChange={(event) => setPassword(event.target.value)} 
