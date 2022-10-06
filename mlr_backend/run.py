@@ -3,6 +3,7 @@ from flask_cors import CORS
 from io import StringIO
 from flask_caching import Cache
 from kmeans.kmeans import kMeans
+from naivebayes.naivebayes import naive_bayes
 import numpy as np
 
 app = Flask(__name__)
@@ -43,6 +44,8 @@ def trainData():
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, int(params['Number_of_Clusters']))
+    if ("Naive Bayes" in models and labels_in_np_array is not None):
+        predictions = naive_bayes(dataset_in_np_array, labels_in_np_array)
     return jsonify({"message": "trained successfully"})
 
 
