@@ -20,7 +20,7 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const formData = new FormData();
 
-  const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN'];
+  const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN', 'Naive Bayes'];
   const parameters = ['Number of Clusters', 'Random Seed', 'Epochs', 'Training(%)'];
 
   function handleDatasetSelected(event) {
