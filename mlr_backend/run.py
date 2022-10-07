@@ -5,6 +5,7 @@ from flask_caching import Cache
 from kmeans.kmeans import kMeans
 from naivebayes.naivebayes import naive_bayes
 import numpy as np
+import metrics
 
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
@@ -46,6 +47,13 @@ def trainData():
             dataset_in_np_array, int(params['Number_of_Clusters']))
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         predictions = naive_bayes(dataset_in_np_array, labels_in_np_array)
+
+    # Evaluation
+    if labels_in_np_array is not None:
+        kMeans_accuracy = metrics.calculateAccuracy(clusterAssessment, labels_in_np_array)
+    if ("KMeans" in models):
+        bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
+
     return jsonify({"message": "trained successfully"})
 
 
