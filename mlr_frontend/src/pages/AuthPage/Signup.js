@@ -30,7 +30,6 @@ const Signup = () => {
                     value = {password}
                     onChange={(event) => setPassword(event.target.value)} 
                 ></input>       
-                {/* <label htmlFor="password">Password</label> */}
 
                 <button type="submit">Signup</button>
             </form>
