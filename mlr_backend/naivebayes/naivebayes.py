@@ -10,15 +10,6 @@ def separate_classes(X, y):
         separated_classes[class_name].append(feature_values)
     return separated_classes
 
-def get_std_and_mean(X):
-    for feature in zip(*X):
-        yield {
-            'std' : np.std(feature),
-            'mean' : np.mean(feature)
-        }
-
-def get_df(x, mean, std):
-    return np.exp(-((x-mean)**2 / (2*std**2))) / (np.sqrt(2*np.pi)*std)
 
 def fit (X, y):
     separated_classes = separate_classes(X, y)
@@ -30,6 +21,31 @@ def fit (X, y):
             'summary': [i for i in get_std_and_mean(feature_values)],
         }
     return class_summary
+
+
+def naive_bayes(X, y):
+    '''
+    Following lines were commented for possible future use.
+    Currently, how to separate data into training set and test set is uncertain.
+    In case Naive Bayes requires separation of training/test set and predicting,
+    predict() function will be used.
+
+    X_train, y_train, X_test, y_test = split_data(X, y)
+    class_summary = fit(X_train, y_train)
+    y_predicted = predict(X_test, class_summary)
+    '''
+    class_summary = fit(X, y)
+    return class_summary
+
+def get_std_and_mean(X):
+    for feature in zip(*X):
+        yield {
+            'std' : np.std(feature),
+            'mean' : np.mean(feature)
+        }
+
+def get_df(x, mean, std):
+    return np.exp(-((x-mean)**2 / (2*std**2))) / (np.sqrt(2*np.pi)*std)
 
 def predict(X, class_summary):
     MAPs = []
@@ -60,9 +76,3 @@ def split_data(X, y, weight = 0.7):
     train_length = int(dataset.shape[0] * weight)
     np.random.shuffle(dataset)
     return dataset[:train_length,:-1], dataset[:train_length,-1], dataset[train_length:,:-1], dataset[train_length:, -1]
-
-def naive_bayes(X, y):
-    X_train, y_train, X_test, y_test = split_data(X, y)
-    class_summary = fit(X_train, y_train)
-    y_predicted = predict(X_test, class_summary)
-    return y_test, y_predicted
