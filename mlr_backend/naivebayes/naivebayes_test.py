@@ -9,7 +9,8 @@ def testNaiveBayes():
     X_data = np.genfromtxt(f'{curr}/mlr_backend/testdata/X_test.csv', delimiter=',')
     y_data = np.genfromtxt(f'{curr}/mlr_backend/testdata/y_test.csv', delimiter=',')
 
-    X_train, y_train, X_test, y_test = split_data(X_data, y_data)
+    seed = 1
+    X_train, y_train, X_test, y_test = split_data(X_data, y_data, seed)
 
     class_summary = naive_bayes(X_train, y_train)
     y_pred = predict(X_test, class_summary)

@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 def separate_classes(X, y):
     separated_classes = {}
@@ -71,8 +72,10 @@ def predict(X, class_summary):
 
     return MAPs
 
-def split_data(X, y, weight = 0.7):
+def split_data(X, y, seed=None, weight = 0.7):
     dataset = np.concatenate((X, y.reshape(y.shape+(1,))), axis=1)
     train_length = int(dataset.shape[0] * weight)
+    if seed:
+        np.random.seed(seed)
     np.random.shuffle(dataset)
     return dataset[:train_length,:-1], dataset[:train_length,-1], dataset[train_length:,:-1], dataset[train_length:, -1]
