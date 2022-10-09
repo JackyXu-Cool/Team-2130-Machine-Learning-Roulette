@@ -46,7 +46,7 @@ def trainData():
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, int(params['Number_of_Clusters']))
     if ("Naive Bayes" in models and labels_in_np_array is not None):
-        predictions = naive_bayes(dataset_in_np_array, labels_in_np_array)
+        class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
 
     # Evaluation
     if labels_in_np_array is not None:
