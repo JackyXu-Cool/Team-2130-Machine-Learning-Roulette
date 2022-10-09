@@ -1,82 +1,68 @@
-from math import sqrt, pi, exp
+import numpy as np
 
-'''
-Step 1: Separate dataset by class
-'''
+def separate_classes(X, y):
+    separated_classes = {}
+    for i in range(len(X)):
+        feature_values = X[i]
+        class_name = y[i]
+        if class_name not in separated_classes:
+            separated_classes[class_name] = []
+        separated_classes[class_name].append(feature_values)
+    return separated_classes
 
-def separate_class(dataSet):
-    separated = {}
-    for i in range(len(dataSet)):
-        v = dataSet[i]
-        class_val = v[-1]
-        if class_val not in separated:
-            separated[class_val] = []
-        separated[class_val].append(v)
-    return separated
+def get_std_and_mean(X):
+    for feature in zip(*X):
+        yield {
+            'std' : np.std(feature),
+            'mean' : np.mean(feature)
+        }
 
-'''
-Step 2: Summarize dataset
-'''
+def get_df(x, mean, std):
+    return np.exp(-((x-mean)**2 / (2*std**2))) / (np.sqrt(2*np.pi)*std)
 
-def mean(numbers):
-    return sum(numbers)/float(len(numbers))
+def fit (X, y):
+    separated_classes = separate_classes(X, y)
+    class_summary = {}
 
-def stdev(numbers):
-    average = mean(numbers)
-    variance = sum([(x-average)**2 for x in numbers])/float(len(numbers)-1)
-    return sqrt(variance)
+    for class_name, feature_values in separated_classes.items():
+        class_summary[class_name] = {
+            'prior_prob': len(feature_values)/len(X),
+            'summary': [i for i in get_std_and_mean(feature_values)],
+        }
+    return class_summary
 
-def summarize(dataset):
-    summaries = [(mean(column), stdev(column), len(column)) for column in zip(*dataset)]
-    del(summaries[-1])
-    return summaries
+def predict(X, class_summary):
+    MAPs = []
 
-'''
-Step 3: Summarize dataset by class using summarize()
-'''
-def summarize_by_class(dataset):
-    separated = separate_class(dataset)
-    summaries = {}
-    for class_val, rows in separated.items():
-        summaries[class_val] = summarize(rows)
-    return summaries
+    for row in X:
+        joint_prob = {}
+        
+        for class_name, features in class_summary.items():
+            total_features = len(features['summary'])
+            likelihood = 1
 
-'''
-Step 4: Get probabilities by class
-'''
+            for idx in range(total_features):
+                feature = row[idx]
+                mean = features['summary'][idx]['mean']
+                stdev = features['summary'][idx]['std']
+                df = get_df(feature, mean, stdev)
+                likelihood *= df
+            prior_prob = features['prior_prob']
+            joint_prob[class_name] = prior_prob * likelihood
 
-def get_probability(x, mean, stdev):
-    return (1/(sqrt(2*pi)*stdev))*exp(-((x-mean)**2)/2* (stdev**2))
+        MAP = max(joint_prob, key= joint_prob.get)
+        MAPs.append(MAP)
 
-def get_class_probability(summaries, row):
-    all_rows = sum([summaries[label][0][2] for label in summaries])
-    probabilities = {}
-    for class_val, class_sum in summaries.items():
-        probabilities[class_val] = summaries[class_val][0][2]/float(all_rows)
-        for i in range(len(class_sum)):
-            mean, stdev, _ = class_sum[i]
-            probabilities[class_val] *= get_probability(row[i], mean, stdev)
-    return probabilities
+    return MAPs
 
-'''
-Step 5: predict class for a given row
-'''
+def split_data(X, y, weight = 0.7):
+    dataset = np.concatenate((X, y.reshape(y.shape+(1,))), axis=1)
+    train_length = int(dataset.shape[0] * weight)
+    np.random.shuffle(dataset)
+    return dataset[:train_length,:-1], dataset[:train_length,-1], dataset[train_length:,:-1], dataset[train_length:, -1]
 
-def predict(summaries, row):
-    probabilities = get_class_probability(summaries, row)
-    best_label, best_prob = None, -1
-    for class_val, prob in probabilities.items():
-        if best_label is None or prob > best_prob:
-            best_prob = prob
-            best_label = class_val
-    return best_label
-
-
-
-def naive_bayes(train, test):
-    summarize = summarize_by_class(train)
-    predictions = []
-    for row in test:
-        output = predict(summarize, row)
-        predictions.append(output)
-    return predictions
+def naive_bayes(X, y):
+    X_train, y_train, X_test, y_test = split_data(X, y)
+    class_summary = fit(X_train, y_train)
+    y_predicted = predict(X_test, class_summary)
+    return y_test, y_predicted
