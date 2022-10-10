@@ -1,5 +1,5 @@
 ### How to run Backend
-Install virtual environment inside the "./python-backend"
+Install virtual environment inside the "./mlr_backend"
 ```shell
 pip install virtualenv
 
@@ -17,7 +17,14 @@ If above gives error, try:
 source venv/bin/activate
 ```
 
-To install necessary python library after you activate the virtual environment:
+To install necessary python library after you activate the virtual environment, there are two options:
+
+1. Automatic Installation
+```shell
+pip install -r requirements.txt
+```
+
+2. Manual Installation
 ```shell
 pip install Flask
 pip install Flask-RESTful
