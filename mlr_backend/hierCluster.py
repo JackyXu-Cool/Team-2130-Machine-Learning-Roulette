@@ -3,7 +3,7 @@ import numpy as np
 
 
 # Generates a model based on training data
-def generateHeirClustingModel(data, seed=None, clusters=2):
+def generateHierClustingModel(data, seed=None, clusters=2):
     if seed is not None:
         np.random.seed = seed
     clustering = AgglomerativeClustering(n_clusters=clusters).fit(data)
@@ -11,6 +11,6 @@ def generateHeirClustingModel(data, seed=None, clusters=2):
     return clustering
 
 # Uses the model to predict the placement of the input data
-def predictHeirClustering(model, data):
+def predictHierClustering(model, data):
     predictions = model.predict(data)
     return predictions
