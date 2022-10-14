@@ -6,7 +6,7 @@ Currently, the database for Machine Learning Roulette is hosted using AWS RDS Se
 
 ## Accessing RDS Database
 
-The results of the database will be available by querying the lambda function in AWS.
+The entries of the database will be available by querying the lambda function in AWS.
 
 ### Current Lambda Methods
 - `get_training_result(email: json) -> list`
@@ -24,7 +24,7 @@ The results of the database will be available by querying the lambda function in
     models: string,         // ex: "KNN, SVM", which each separated by a comma
     epoch: int,
     training_percent: int
-    training_output: json in string format
+    training_output: json in string format]
     ```
 
 ## Storing Data into RDS Database
