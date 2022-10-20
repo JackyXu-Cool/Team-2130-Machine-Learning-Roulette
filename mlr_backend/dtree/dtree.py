@@ -2,7 +2,10 @@ from sklearn import tree
 import numpy as np
 
 
-def decisionTree(dataset,testing_dataset):
+def decisionTreeClassifier(dataset,testing_dataset):
+    '''
+    Returns a prediction based on the testing dataset
+    '''
     class_label = dataset[:, -1] # for last column
     dataset = dataset[:, :-1]
     classifier = tree.DecisionTreeClassifier()
