@@ -38,7 +38,6 @@ def uploadCSVFile():
         except UnicodeDecodeError:
             return 'fail to find encoding', 404
     cache.set("labels", decoded_y_label)
-    print("label is " + cache.get("labels"))
 
     return jsonify({"message": "uploaded successfully"})
 
