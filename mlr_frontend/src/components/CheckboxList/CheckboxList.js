@@ -23,7 +23,7 @@ const CheckboxList = (props) => {
       <div className="list-container">
         {checkList.map((item, index) => (
           <div key={index}>
-            <input value={item} type="checkbox" onChange={handleCheck} />
+            <input value={item} type="checkbox" onChange={handleCheck} disabled={props.disabled} />
             <span className={isChecked(item)}>{item}</span>
           </div>
         ))}
