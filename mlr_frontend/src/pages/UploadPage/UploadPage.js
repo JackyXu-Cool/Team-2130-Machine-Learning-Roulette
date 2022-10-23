@@ -34,9 +34,7 @@ const UploadPage = () => {
   function handleFileUpload() {
     if (dataset) {
       formData.append("file", dataset);
-      if (yLabel) {
-        formData.append("ylabel", yLabel);
-      }
+      formData.append("ylabel", yLabel);
       sendRequest('http://127.0.0.1:5000/upload', 'POST', formData)
         .then((response) => {
           setUploadStage(2);
@@ -55,15 +53,12 @@ const UploadPage = () => {
     document.getElementById('uploadedFile').value = null;
   }
 
-  // TODO: For the future, we need to send it to the server to determine the parameters
-  // Parameters are usually dependent on the selected model.
   function handleNextButton() {
     if (selectedModels.length >= 1) {
       setUploadStage(3);
     }
   }
 
-  // TODO: Actually send the request to the server to run ML model. Need to pass in some real data to the state obejct
   function handleStartTraining() {
     // TODO: We need to check that if all the parameters value are defined.
     if (selectedModels.length > 0 && parameterValues !== null) {
@@ -96,7 +91,7 @@ const UploadPage = () => {
       </div>
       <div className="upload_step_container">
         <div className="upload_step_item">
-          <h4>Step 1b: Upload Y-Labels for accuracy comparison (Optional)</h4>
+          <h4>Step 1b: Upload Y-Labels for accuracy comparison</h4>
         </div>
         <div className="upload_step_item">
           <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleYLabelSelected} />

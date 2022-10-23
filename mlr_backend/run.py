@@ -28,6 +28,17 @@ def uploadCSVFile():
     # TODO: pre-processing the dataset. Currently, if any value includes a comma in it, we will
     # have issue in parsing it with np.genfromtxt()
     cache.set("dataset", decoded_dataset)
+
+    input_y_labels = request.files['ylabel'].read()
+    try:
+        decoded_y_label = input_y_labels.decode("utf-8")
+    except UnicodeDecodeError:
+        try:
+            decoded_y_label = input_y_labels.decode("ANSI")
+        except UnicodeDecodeError:
+            return 'fail to find encoding', 404
+    cache.set("labels", decoded_y_label)
+
     return jsonify({"message": "uploaded successfully"})
 
 
@@ -39,9 +50,10 @@ def trainData():
     dataset = cache.get("dataset")
     dataset_in_np_array = np.genfromtxt(StringIO(dataset),
                                         delimiter=',')
+
     labels = cache.get("labels")
     labels_in_np_array = np.genfromtxt(StringIO(labels),
-                                        delimiter=',')
+                                       delimiter=',')
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, int(params['Number_of_Clusters']))
@@ -50,7 +62,8 @@ def trainData():
 
     # Evaluation
     if labels_in_np_array is not None:
-        kMeans_accuracy = metrics.calculateAccuracy(clusterAssessment, labels_in_np_array)
+        kMeans_accuracy = metrics.calculateAccuracy(
+            clusterAssessment, labels_in_np_array)
     if ("KMeans" in models):
         bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
 
