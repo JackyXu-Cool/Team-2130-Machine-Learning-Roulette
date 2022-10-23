@@ -20,8 +20,8 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const formData = new FormData();
 
-  const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN', 'Naive Bayes'];
-  const parameters = ['Number of Clusters', 'Random Seed', 'Epochs', 'Training(%)'];
+  const models = ['KMeans', 'Hierarcical Clustering', 'Naive Bayes', 'Decision Tree'];
+  const parameters = ['Number of Clusters', 'Training(%)'];
 
   function handleDatasetSelected(event) {
     setDataset(event.target.files[0]);
