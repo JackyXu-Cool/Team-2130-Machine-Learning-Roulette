@@ -20,8 +20,8 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const formData = new FormData();
 
-  const models = ['KMeans', 'Principal Component Analysis', 'Hierarcical Clustering', 'KNN', 'Naive Bayes'];
-  const parameters = ['Number of Clusters', 'Random Seed', 'Epochs', 'Training(%)'];
+  const models = ['KMeans', 'Hierarcical Clustering', 'Naive Bayes', 'Decision Tree'];
+  const parameters = ['Number of Clusters', 'Training(%)'];
 
   function handleDatasetSelected(event) {
     setDataset(event.target.files[0]);
@@ -37,7 +37,7 @@ const UploadPage = () => {
       formData.append("ylabel", yLabel);
       sendRequest('http://127.0.0.1:5000/upload', 'POST', formData)
         .then((response) => {
-          setUploadStage(2);
+          setUploadStage(3);
           console.log(response);
         })
         .catch((err) => {
@@ -46,16 +46,9 @@ const UploadPage = () => {
     }
   }
 
-  function handleBackButton() {
-    setDataset(null);
-    setYLabel(null);
-    setUploadStage(1);
-    document.getElementById('uploadedFile').value = null;
-  }
-
   function handleNextButton() {
     if (selectedModels.length >= 1) {
-      setUploadStage(3);
+      setUploadStage(2);
     }
   }
 
@@ -80,10 +73,31 @@ const UploadPage = () => {
     uploadStageThreeHtml = [];
 
   const uploadStageOne = (
+    <div className="upload_step_container">
+      <div className="upload_step_item">
+        <h4>Step 1: Select the ML Model you want to run with</h4>
+      </div>
+      <CheckboxList
+        checked={selectedModels}
+        setChecked={setSelectedModels}
+        checkList={models}
+        title={'Models'}
+        disabled={uploadStage == 1 ? false : true}
+      />
+      <ButtonGroup className="upload_back_next">
+        {uploadStage == 1 ?
+          <Button variant="outline-secondary" onClick={handleNextButton}>
+            Next
+          </Button> : null}
+      </ButtonGroup>
+    </div>
+  )
+
+  const uploadStageTwo = (
     <React.Fragment>
       <div className="upload_step_container" style={{ borderBottom: 'none' }}>
         <div className="upload_step_item">
-          <h4>Step 1: Upload Dataset</h4>
+          <h4>Step 2-a: Upload Dataset</h4>
         </div>
         <div className="upload_step_item">
           <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleDatasetSelected} />
@@ -91,52 +105,16 @@ const UploadPage = () => {
       </div>
       <div className="upload_step_container">
         <div className="upload_step_item">
-          <h4>Step 1b: Upload Y-Labels for accuracy comparison</h4>
+          <h4>Step 2-b: Upload Y-Labels for accuracy comparison</h4>
         </div>
         <div className="upload_step_item">
           <input id="uploadedFile" type="file" accept={'.csv'} onChange={handleYLabelSelected} />
-          <button className="uploadButton" onClick={handleFileUpload} disabled={uploadStage == 1 ? false : true}>
+          <button className="uploadButton" onClick={handleFileUpload} disabled={uploadStage == 2 ? false : true}>
             Upload
           </button>
         </div>
       </div>
     </React.Fragment>
-  );
-
-  const uploadStageTwoWithBtns = (
-    <div className="upload_step_container">
-      <div className="upload_step_item">
-        <h4>Step2: Select Models</h4>
-      </div>
-      <CheckboxList
-        checked={selectedModels}
-        setChecked={setSelectedModels}
-        checkList={models}
-        title={'Models'}
-      />
-      <ButtonGroup className="upload_back_next">
-        <Button variant="outline-secondary" onClick={handleBackButton}>
-          Back
-        </Button>
-        <Button variant="outline-secondary" onClick={handleNextButton}>
-          Next
-        </Button>
-      </ButtonGroup>
-    </div>
-  );
-
-  const uploadStageTwoWithoutBtns = (
-    <div className="upload_step_container">
-      <div className="upload_step_item">
-        <h4>Step2: Select Models</h4>
-      </div>
-      <CheckboxList
-        checked={selectedModels}
-        setChecked={setSelectedModels}
-        checkList={models}
-        title={'Models'}
-      />
-    </div>
   );
 
   const uploadStageThree = (
@@ -160,8 +138,8 @@ const UploadPage = () => {
   );
 
   uploadStageOneHtml = [uploadStageOne];
-  uploadStageTwoHtml = [uploadStageOne, uploadStageTwoWithBtns];
-  uploadStageThreeHtml = [uploadStageOne, uploadStageTwoWithoutBtns, uploadStageThree];
+  uploadStageTwoHtml = [uploadStageOne, uploadStageTwo];
+  uploadStageThreeHtml = [uploadStageOne, uploadStageTwo, uploadStageThree];
 
   let html;
 
