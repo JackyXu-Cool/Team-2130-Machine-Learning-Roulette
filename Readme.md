@@ -35,5 +35,15 @@ Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 ### Bug Fixes
 1. Disabled upload button when the user is not in the first stage of upload.
 
+## Version 0.3.0
+### New Features
+1. Implemented Naive Bayes
+2. Implemented Hierarchical Clustering
+3. Implemented Decision Tree
+4. Database setup
+5. Supported y-label for accuracy comparison
+### Bug Fixes
+1. Modified the order of frontend upload stage. User will choose the ML model first and then upload their dataset. Y-label is required for some ML models and is optional for the others. The logic will be much clear if the user chooses ML model first, so that our frontend can decide whether y-label is must or not.
+
 # Client
 Jay Lofstead, Sandia National Laboratories
