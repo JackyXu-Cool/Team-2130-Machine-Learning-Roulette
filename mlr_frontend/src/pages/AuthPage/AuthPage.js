@@ -1,54 +1,13 @@
-// import React, { useState } from 'react';
+import React from 'react';
 
-import { Navbar, Nav, Container } from 'react-bootstrap';
-// import Button from 'react-bootstrap/Button';
-// import FormControl from 'react-bootstrap/FormControl';
-
-import Card from '../../components/Card/Card';
 import './AuthPage.css';
 
-import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import Card from '../../components/Card/Card';
 import Signup from "./Signup";
 import Signin from "./Signin";
 
 const AuthPage = () => {
-  // const [isLogInMode, setLogInMode] = useState(true);
-
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // function switchMode() {
-  //   setLogInMode(!isLogInMode);
-  // }
-
-  // function onChangeEmailInput(event) {
-  //   setEmail(event.target.value);
-  // }
-
-  // function onChangePasswordInput(event) {
-  //   setPassword(event.target.value);
-  // }
-
-  // // TODO: Form submission (send backend request)
-  // function submitForm() {
-  //   if (isLogInMode) {
-  //     console.log('is Login mode');
-  //   } else {
-  //     console.log('is register mode');
-  //   }
-  // }
-
-  // let buttonGroupHtml = (
-  //   <React.Fragment>
-  //     <Button variant="secondary" onClick={submitForm}>
-  //       {isLogInMode ? 'Login' : 'Sign Up'}
-  //     </Button>
-  //     <Button variant="outline-secondary" onClick={switchMode}>
-  //       Switch to {isLogInMode ? 'Sign Up' : 'Login'}
-  //     </Button>
-  //   </React.Fragment>
-  // );
-
   return (
     <React.Fragment>
       <Navbar collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
@@ -75,7 +34,7 @@ const AuthPage = () => {
       </div>
     </React.Fragment>
   );
-  
+
 };
 
 export default AuthPage;
