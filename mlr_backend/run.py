@@ -4,6 +4,8 @@ from io import StringIO
 from flask_caching import Cache
 from kmeans.kmeans import kMeans
 from naivebayes.naivebayes import naive_bayes
+from dtree.dtree import decisionTreeClassifier
+from split import splitDataset
 import numpy as np
 import metrics
 
@@ -56,18 +58,24 @@ def trainData():
                                        delimiter=',')
 
     cluster_number = int(params['Number_of_Clusters'])
-    training_percentage = int(params['Training(%)'])
+    training_percentage = int(params.get('Training(%)',70)) # Using a default value of 70
+
+
+    Xtrain, Xtest, Ytrain, Ytest = splitDataset(dataset_in_np_array,labels_in_np_array,training_percentage);
 
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, cluster_number)
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
-
+    if ("Decision Tree" in models and Ytrain is not None):
+        prediction =  decisionTreeClassifier(Xtrain, Xtest, Ytrain, Ytest)
     # Evaluation
     if labels_in_np_array is not None:
         kMeans_accuracy = metrics.calculateAccuracy(
             clusterAssessment, labels_in_np_array)
+        dtree_accuracy = metrics.calculateAccuracy(
+            prediction, Ytest)
     if ("KMeans" in models):
         bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
 

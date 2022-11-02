@@ -2,17 +2,15 @@ from sklearn import tree
 import numpy as np
 
 
-def decisionTreeClassifier(dataset,testing_dataset):
+def decisionTreeClassifier(Xtrain, Xtest, Ytrain, Ytest):
     '''
     Returns a prediction based on the testing dataset
     '''
-    class_label = dataset[:, -1] # for last column
-    dataset = dataset[:, :-1]
     classifier = tree.DecisionTreeClassifier()
 
 
-    classifier = classifier.fit(dataset, class_label)
+    classifier = classifier.fit(Xtrain, Ytrain)
 
-    prediction = classifier.predict(testing_dataset)
+    prediction = classifier.predict(Xtest)
 
     return prediction

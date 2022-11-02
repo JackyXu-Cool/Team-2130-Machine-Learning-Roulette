@@ -17,10 +17,13 @@ def splitDataset(X, ylabel, percent_to_split=70):
     Xtrain = X[:XrowIndex,:]
     Xtest = X[XrowIndex:,:]
 
-    Yrow = ylabel.shape[0]
-    YrowIndex = int(np.ceil(Yrow * percentage))
-    Ytrain = ylabel[:YrowIndex]
-    Ytest = ylabel[YrowIndex:]
+    Ytrain = None
+    Ytest = None;
+    if ylabel is not None:
+        Yrow = ylabel.shape[0]
+        YrowIndex = int(np.ceil(Yrow * percentage))
+        Ytrain = ylabel[:YrowIndex]
+        Ytest = ylabel[YrowIndex:]
 
 
     return Xtrain, Xtest, Ytrain, Ytest
