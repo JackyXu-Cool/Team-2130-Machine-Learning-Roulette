@@ -6,6 +6,7 @@ from kmeans.kmeans import kMeans
 from naivebayes.naivebayes import naive_bayes
 from dtree.dtree import decisionTreeClassifier
 from split import splitDataset
+from hierCluster import generateHierClustingModel, predictHierClustering
 import numpy as np
 import metrics
 
@@ -70,6 +71,9 @@ def trainData():
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
     if ("Decision Tree" in models and Ytrain is not None):
         prediction =  decisionTreeClassifier(Xtrain, Xtest, Ytrain, Ytest)
+    if ('Hierarcical Clustering' in models):
+        model = generateHierClustingModel(Xtrain, None, cluster_number) # or just leave as 2
+        HCprediction = predictHierClustering(model, Ytrain)
     # Evaluation
     if labels_in_np_array is not None:
         kMeans_accuracy = metrics.calculateAccuracy(
