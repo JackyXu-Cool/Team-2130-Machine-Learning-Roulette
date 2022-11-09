@@ -19,10 +19,10 @@ There are two ways to retrieve and store users' information into RDS database.
 There are currently two endpoints exposed to REST API
 - **storehistory**
     - Endpoint: https://6ub4cm85uh.execute-api.us-east-1.amazonaws.com/trainingdata/storehistory
-    - Access this endpoint with `store_history` method in `store_history.py`, the input to the method must be in this format
+    - Access this endpoint with `store_history` method in `store_history.py`, the input to the method would be user's email, which must be a string
     - **Parameter**
         ```json
-        {"email": ""}
+        email -> string
         ```
     - **Return**
         - Status Code:
