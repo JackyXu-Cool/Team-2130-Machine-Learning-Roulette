@@ -17,5 +17,8 @@ def get_training_result(email):
     payload = {"email": f"{email}"}
 
     response = requests.post(url, json=payload)
+    print(type(response.json()))
 
     return response.status_code, response.json()
+
+get_training_result('demo@gmail.com')
