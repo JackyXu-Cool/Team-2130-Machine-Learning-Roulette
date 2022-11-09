@@ -7,6 +7,8 @@ import './ResultPage.css';
 const ResultPage = () => {
   // TODO: we need to deal with the state data we get from UploadPage
   const { state } = useLocation();
+  console.log("evaluation is ")
+  console.log(state.evaluation)
   const navigate = useNavigate();
 
   function handleHomeBtn() {

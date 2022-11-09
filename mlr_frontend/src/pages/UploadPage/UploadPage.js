@@ -53,7 +53,6 @@ const UploadPage = () => {
   }
 
   function handleStartTraining() {
-    // TODO: We need to check that if all the parameters value are defined.
     if (selectedModels.length > 0 && parameterValues !== null) {
       sendRequest(
         'http://127.0.0.1:5000/training',
@@ -63,7 +62,7 @@ const UploadPage = () => {
       ).then((response) => {
         console.log(response);
         // TODO: Send response to result page
-        navigate('/result', { state: {} });
+        navigate('/result', { state: { evaluation: response.evaluation } });
       });
     }
   }
