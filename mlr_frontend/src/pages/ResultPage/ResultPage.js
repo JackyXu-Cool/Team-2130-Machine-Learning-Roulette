@@ -1,14 +1,13 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ResultCellContainer from '../../components/ResultCell/ResultCellContainer';
 
 import './ResultPage.css';
 
 const ResultPage = () => {
   // TODO: we need to deal with the state data we get from UploadPage
   const { state } = useLocation();
-  console.log("evaluation is ")
-  console.log(state.evaluation)
   const navigate = useNavigate();
 
   function handleHomeBtn() {
@@ -21,11 +20,8 @@ const ResultPage = () => {
 
   return (
     <div>
-      <div className="result-img-container">
-        <img
-          className="result-img"
-          src="https://mms.businesswire.com/media/20170831005098/en/609373/5/Machine_Learning_Courses_Market.jpg"
-        />
+      <div className="result-table-container">
+        <ResultCellContainer data={state.evaluation} />
       </div>
       <div className="symmetric-button-group">
         <Button
