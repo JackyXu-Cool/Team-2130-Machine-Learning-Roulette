@@ -1,3 +1,6 @@
 .result-table-cell {
     margin: 5pt;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

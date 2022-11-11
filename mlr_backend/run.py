@@ -9,6 +9,7 @@ from split import splitDataset
 from hierCluster import generateHierClustingModel, predictHierClustering
 import numpy as np
 import metrics
+import json
 
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
@@ -73,9 +74,16 @@ def trainData():
         if labels_in_np_array is not None:
             kMeans_accuracy = metrics.calculateAccuracy(
                 clusterAssessment, labels_in_np_array)
-            evaluation["kmeans_accuracy"] = kMeans_accuracy
+            evaluation['kmeans_accuracy'] = kMeans_accuracy
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
+        index = 0
+        for value in class_summary.values():
+            key = 'prior_prob_' + str(index)
+            evaluation[key] = round(value['prior_prob'], 4)
+            keySummary = 'summary_' + str(index)
+            evaluation[keySummary] = value['summary']
+            index += 1
     if ("Decision Tree" in models and Ytrain is not None):
         prediction = decisionTreeClassifier(Xtrain, Xtest, Ytrain, Ytest)
         if labels_in_np_array is not None:

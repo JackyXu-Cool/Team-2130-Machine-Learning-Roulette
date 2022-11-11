@@ -6,8 +6,6 @@ const ResultCell = (props) => {
         <React.Fragment>
             <div className='result-table-cell'>
                 <p style={{ fontWeight: 'bold' }}>{props.name}</p>
-            </div>
-            <div className='result-table-cell'>
                 <p>{props.value}</p>
             </div>
         </React.Fragment>

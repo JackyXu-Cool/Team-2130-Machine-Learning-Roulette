@@ -20,9 +20,10 @@ const ResultPage = () => {
 
   return (
     <div>
-      <div className="result-table-container">
-        <ResultCellContainer data={state.evaluation} />
-      </div>
+      {Object.keys(state.evaluation).length > 0 &&
+        <div className="result-table-container">
+          <ResultCellContainer data={state.evaluation} />
+        </div>}
       <div className="symmetric-button-group">
         <Button
           variant="outline-secondary"
