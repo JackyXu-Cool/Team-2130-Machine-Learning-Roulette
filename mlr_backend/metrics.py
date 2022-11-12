@@ -3,8 +3,10 @@ from kmeans.kmeans import kMeans
 import numpy as np
 
 def calculateAccuracy(y, labels):
-    model_output = [int(row[0]) for row in y.tolist()]
-    return accuracy_score(model_output, labels)
+    # model_output = [int(row[0]) for row in y.tolist()]
+    # Update Nov 12th: I dont think we need to convert the input y array to a list
+    # as accuracy_score can take in both arrays and lists
+    return accuracy_score(y, labels)
 
 def silhouette_analysis(X):
     '''
