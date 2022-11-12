@@ -62,7 +62,7 @@ def trainData():
     training_percentage = int(params.get('Training(%)',70)) # Using a default value of 70
 
 
-    Xtrain, Xtest, Ytrain, Ytest = splitDataset(dataset_in_np_array,labels_in_np_array,training_percentage);
+    Xtrain, Xtest, Ytrain, Ytest = splitDataset(dataset_in_np_array,labels_in_np_array,training_percentage)
 
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
