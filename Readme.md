@@ -45,5 +45,14 @@ Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 ### Bug Fixes
 1. Modified the order of frontend upload stage. User will choose the ML model first and then upload their dataset. Y-label is required for some ML models and is optional for the others. The logic will be much clear if the user chooses ML model first, so that our frontend can decide whether y-label is must or not.
 
+## Version 0.4.0
+### New Features
+1. Display metrics for the Machine learning model training result (including accuracy, prior probability, mean, standard deviation, etc)
+2. Seperate login page and register page. After new user is registered, they will be redirected into the upload page automatically.
+3. Set up database procedure to store history data
+4. Default training percentage set to 70%
+### Bug Fixes
+1. Disabled the model selection once the user has uploaded their dataset
+
 # Client
 Jay Lofstead, Sandia National Laboratories
