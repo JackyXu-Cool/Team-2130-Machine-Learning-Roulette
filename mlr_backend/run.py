@@ -73,6 +73,7 @@ def trainData():
             dataset_in_np_array, cluster_number)
         bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
         if labels_in_np_array is not None:
+            clusterAssessment = [int(row[0]) for row in clusterAssessment.tolist()]
             kMeans_accuracy = metrics.calculateAccuracy(
                 clusterAssessment, labels_in_np_array)
             evaluation['kmeans_accuracy'] = kMeans_accuracy
@@ -80,7 +81,6 @@ def trainData():
             key = 'n_cluster=' + str(cluster_num)
             evaluation[key] = 'The average silhoutte_score is: ' + \
                 str(bestNumOfK[cluster_num])
-        # evaluation['kmeans_best_num_of_k'] = bestNumOfK
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
         index = 0
