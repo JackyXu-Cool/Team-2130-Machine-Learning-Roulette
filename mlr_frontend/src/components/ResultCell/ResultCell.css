@@ -4,3 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.result-table-cell div {
+    margin-left: 10pt;
+}

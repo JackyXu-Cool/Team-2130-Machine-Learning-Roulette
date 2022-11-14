@@ -5,8 +5,12 @@ const ResultCell = (props) => {
     return (
         <React.Fragment>
             <div className='result-table-cell'>
-                <p style={{ fontWeight: 'bold' }}>{props.name}</p>
-                <p>{props.value}</p>
+                <div>
+                    <p style={{ fontWeight: 'bold' }}>{props.name}</p>
+                </div>
+                <div>
+                    <p>{props.value}</p>
+                </div>
             </div>
         </React.Fragment>
     )

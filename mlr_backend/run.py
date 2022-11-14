@@ -76,8 +76,11 @@ def trainData():
             kMeans_accuracy = metrics.calculateAccuracy(
                 clusterAssessment, labels_in_np_array)
             evaluation['kmeans_accuracy'] = kMeans_accuracy
-        evaluation['kmeans_centroid'] = centroid
-        evaluation['kmeans_best_num_of_k'] = bestNumOfK
+        for cluster_num in bestNumOfK.keys():
+            key = 'n_cluster=' + str(cluster_num)
+            evaluation[key] = 'The average silhoutte_score is: ' + \
+                str(bestNumOfK[cluster_num])
+        # evaluation['kmeans_best_num_of_k'] = bestNumOfK
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
         index = 0
@@ -95,7 +98,8 @@ def trainData():
     if ('Hierarcical Clustering' in models):
         model = generateHierClustingModel(
             Xtrain, None, cluster_number)  # or just leave as 2
-        HCprediction = predictHierClustering(model, Ytrain)
+        HCprediction = predictHierClustering(model)
+        print(HCprediction)
 
     return jsonify({"message": "trained successfully,", "evaluation": evaluation})
 
