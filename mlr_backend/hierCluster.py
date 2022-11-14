@@ -10,7 +10,8 @@ def generateHierClustingModel(data, seed=None, clusters=2):
     # prediction = fit_predict(data)
     return clustering
 
-# Uses the model to predict the placement of the input data
-def predictHierClustering(model, data):
-    predictions = model.predict(data)
+
+# Returns the assigned clusters of datapoints in model
+def predictHierClustering(model):
+    predictions = model.labels_
     return predictions
