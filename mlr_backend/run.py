@@ -71,10 +71,13 @@ def trainData():
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, cluster_number)
+        bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
         if labels_in_np_array is not None:
             kMeans_accuracy = metrics.calculateAccuracy(
                 clusterAssessment, labels_in_np_array)
             evaluation['kmeans_accuracy'] = kMeans_accuracy
+        evaluation['kmeans_centroid'] = centroid
+        evaluation['kmeans_best_num_of_k'] = bestNumOfK
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
         index = 0
@@ -93,9 +96,6 @@ def trainData():
         model = generateHierClustingModel(
             Xtrain, None, cluster_number)  # or just leave as 2
         HCprediction = predictHierClustering(model, Ytrain)
-
-    if ("KMeans" in models):
-        bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
 
     return jsonify({"message": "trained successfully,", "evaluation": evaluation})
 
