@@ -73,7 +73,8 @@ def trainData():
             dataset_in_np_array, cluster_number)
         bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
         if labels_in_np_array is not None:
-            clusterAssessment = [int(row[0]) for row in clusterAssessment.tolist()]
+            clusterAssessment = [int(row[0])
+                                 for row in clusterAssessment.tolist()]
             kMeans_accuracy = metrics.calculateAccuracy(
                 clusterAssessment, labels_in_np_array)
             evaluation['kmeans_accuracy'] = kMeans_accuracy
