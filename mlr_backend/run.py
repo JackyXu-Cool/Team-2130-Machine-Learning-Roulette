@@ -76,6 +76,7 @@ def trainData():
         HCprediction = predictHierClustering(model, Ytrain)
     # Evaluation
     if labels_in_np_array is not None:
+        clusterAssessment = [int(row[0]) for row in clusterAssessment.tolist()]
         kMeans_accuracy = metrics.calculateAccuracy(
             clusterAssessment, labels_in_np_array)
         dtree_accuracy = metrics.calculateAccuracy(
