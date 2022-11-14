@@ -17,23 +17,16 @@ Junqi (Jacky) Xu: jxu477@gatech.edu (Role: Initiator, Information Giver)
 Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 
 # Release Note
-## Version 0.1.0
-### New Features
-1. Frontend page for uploading dataset (CSV Format) and selecting ML models and parameters.
-2. Frontend page for Login and registration
-3. Error Modal
-4. Backedn APIs to receive CSV dataset and parameters
-### Bug Fixes
-1. Large margin in "Upload: step2"
 
-## Version 0.2.0
+## Version 0.4.0
 ### New Features
-1. Implemented KMeans Algorithm that takes in CSV dataset and # of clusters as parameters
-2. Built backend API that call KMeans algorithm to get cluster assessment
-3. User authentication (Register and Login)
-4. Deploy the website (https://www.mleroulette.com/)
+1. Display metrics for the Machine learning model training result (including accuracy, prior probability, mean, standard deviation, etc)
+2. Seperate login page and register page. After new user is registered, they will be redirected into the upload page automatically.
+3. Set up database procedure to store history data
+4. Default training percentage set to 70%
 ### Bug Fixes
-1. Disabled upload button when the user is not in the first stage of upload.
+1. Disabled the model selection once the user has uploaded their dataset
+
 
 ## Version 0.3.0
 ### New Features
@@ -45,14 +38,26 @@ Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 ### Bug Fixes
 1. Modified the order of frontend upload stage. User will choose the ML model first and then upload their dataset. Y-label is required for some ML models and is optional for the others. The logic will be much clear if the user chooses ML model first, so that our frontend can decide whether y-label is must or not.
 
-## Version 0.4.0
+
+## Version 0.2.0
 ### New Features
-1. Display metrics for the Machine learning model training result (including accuracy, prior probability, mean, standard deviation, etc)
-2. Seperate login page and register page. After new user is registered, they will be redirected into the upload page automatically.
-3. Set up database procedure to store history data
-4. Default training percentage set to 70%
+1. Implemented KMeans Algorithm that takes in CSV dataset and # of clusters as parameters
+2. Built backend API that call KMeans algorithm to get cluster assessment
+3. User authentication (Register and Login)
+4. Deploy the website (https://www.mleroulette.com/)
 ### Bug Fixes
-1. Disabled the model selection once the user has uploaded their dataset
+1. Disabled upload button when the user is not in the first stage of upload.
+
+
+## Version 0.1.0
+### New Features
+1. Frontend page for uploading dataset (CSV Format) and selecting ML models and parameters.
+2. Frontend page for Login and registration
+3. Error Modal
+4. Backedn APIs to receive CSV dataset and parameters
+### Bug Fixes
+1. Large margin in "Upload: step2"
+
 
 # Client
 Jay Lofstead, Sandia National Laboratories
