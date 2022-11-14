@@ -9,6 +9,7 @@ from split import splitDataset
 from hierCluster import generateHierClustingModel, predictHierClustering
 import numpy as np
 import metrics
+import json
 
 app = Flask(__name__)
 app.config["CACHE_TYPE"] = "SimpleCache"
@@ -59,32 +60,49 @@ def trainData():
                                        delimiter=',')
 
     cluster_number = int(params['Number_of_Clusters'])
-    training_percentage = int(params.get('Training(%)',70)) # Using a default value of 70
+    # Using a default value of 70
+    training_percentage = int(params.get('Training(%)', 70))
 
+    Xtrain, Xtest, Ytrain, Ytest = splitDataset(
+        dataset_in_np_array, labels_in_np_array, training_percentage)
 
-    Xtrain, Xtest, Ytrain, Ytest = splitDataset(dataset_in_np_array,labels_in_np_array,training_percentage)
+    evaluation = {}
 
     if ("KMeans" in models):
         centroid, clusterAssessment = kMeans(
             dataset_in_np_array, cluster_number)
+        bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
+        if labels_in_np_array is not None:
+            clusterAssessment = [int(row[0])
+                                 for row in clusterAssessment.tolist()]
+            kMeans_accuracy = metrics.calculateAccuracy(
+                clusterAssessment, labels_in_np_array)
+            evaluation['kmeans_accuracy'] = kMeans_accuracy
+        for cluster_num in bestNumOfK.keys():
+            key = 'n_cluster=' + str(cluster_num)
+            evaluation[key] = 'The average silhoutte_score is: ' + \
+                str(bestNumOfK[cluster_num])
     if ("Naive Bayes" in models and labels_in_np_array is not None):
         class_summary = naive_bayes(dataset_in_np_array, labels_in_np_array)
+        index = 0
+        for value in class_summary.values():
+            key = 'prior_prob_' + str(index)
+            evaluation[key] = round(value['prior_prob'], 4)
+            keySummary = 'summary_' + str(index)
+            evaluation[keySummary] = value['summary']
+            index += 1
     if ("Decision Tree" in models and Ytrain is not None):
-        prediction =  decisionTreeClassifier(Xtrain, Xtest, Ytrain, Ytest)
+        prediction = decisionTreeClassifier(Xtrain, Xtest, Ytrain, Ytest)
+        if labels_in_np_array is not None:
+            dtree_accuracy = metrics.calculateAccuracy(prediction, Ytest)
+            evaluation['dtree_accuracy'] = dtree_accuracy
     if ('Hierarcical Clustering' in models):
-        model = generateHierClustingModel(Xtrain, None, cluster_number) # or just leave as 2
-        HCprediction = predictHierClustering(model, Ytrain)
-    # Evaluation
-    if labels_in_np_array is not None:
-        clusterAssessment = [int(row[0]) for row in clusterAssessment.tolist()]
-        kMeans_accuracy = metrics.calculateAccuracy(
-            clusterAssessment, labels_in_np_array)
-        dtree_accuracy = metrics.calculateAccuracy(
-            prediction, Ytest)
-    if ("KMeans" in models):
-        bestNumOfK = metrics.silhouette_analysis(dataset_in_np_array)
+        model = generateHierClustingModel(
+            Xtrain, None, cluster_number)  # or just leave as 2
+        HCprediction = predictHierClustering(model)
+        print(HCprediction)
 
-    return jsonify({"message": "trained successfully"})
+    return jsonify({"message": "trained successfully,", "evaluation": evaluation})
 
 
 if __name__ == "__main__":
