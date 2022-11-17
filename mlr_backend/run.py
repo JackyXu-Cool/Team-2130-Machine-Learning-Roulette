@@ -58,8 +58,10 @@ def trainData():
     labels = cache.get("labels")
     labels_in_np_array = np.genfromtxt(StringIO(labels),
                                        delimiter=',')
-
-    cluster_number = int(params['Number_of_Clusters'])
+    cluster_number = 2
+    if params['Number_of_Clusters'] is not None:
+        cluster_number = int(params['Number_of_Clusters'])
+    # cluster_number = int(params['Number_of_Clusters'])
     # Using a default value of 70
     training_percentage = int(params.get('Training(%)', 70))
 
