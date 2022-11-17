@@ -23,13 +23,10 @@ There are currently two endpoints exposed to REST API
 - Endpoint: https://6ub4cm85uh.execute-api.us-east-1.amazonaws.com/trainingdata/gethistory
 - Access this endpoint in `get_training_result` in `get_history.py`
 - **Parameter**
-    ```json
+    ```python
     email -> string
     ```
 - **Return**
-    - Status Code:
-        - 200: method executed successfully
-        - Other: there are some errors
     - The returned result of this function will be a list, with the entry of the list in the following order.
     ```python
     [time_stamp : string, 
@@ -39,8 +36,11 @@ There are currently two endpoints exposed to REST API
     training_percent: int
     training_output: json in string format]
     ```
+    - Status Code:
+        - 200: method executed successfully
+        - Other: there are some errors
     
-#### **storehistory**
+#### storehistory
 - Endpoint: https://6ub4cm85uh.execute-api.us-east-1.amazonaws.com/trainingdata/storehistory
 - Access this endpoint with `store_history` method in `store_history.py`, the input to the method would be user's email, which must be a string
 - **Parameter**
@@ -83,10 +83,6 @@ The input to the function must be in the following format
     training_output: json in string format]
     ```
 
-## Storing Data into RDS Database
-
-Storing data into RDS database will also be available through a lambda method.
-
 - `store_history(user_history: json) -> null`
     - This lambda function takes in a json input and stores the user's training history into the database.
     - The format of input json is as follows as an example
@@ -102,11 +98,3 @@ Storing data into RDS database will also be available through a lambda method.
     "training_output": "{'1':'2', '2':3}" -> json in string form, use json.dumps() to convert json to json string
     }
     ```
-
-## Writing AWS Lambda for Database
-#### Python
-First create an empty folder.
-
-In the empty folder, execute `pip install -t $PWD pymysql`, which will install `pymysql` in package form.
-
-Create `.py` file and write your lambda function inside. Please refer to code inside folder `lambda_function`.
