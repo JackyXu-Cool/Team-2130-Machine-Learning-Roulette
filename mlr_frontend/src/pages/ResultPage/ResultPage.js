@@ -20,7 +20,7 @@ const ResultPage = () => {
   }
 
   function generatePDF() {
-    const report = new JsPDF('portrait', 'pt', 'a4');
+    const report = new JsPDF('portrait', 'pt', 'letter');
     report.html(document.querySelector('#report')).then(() => {
       report.save('report.pdf');
     });
