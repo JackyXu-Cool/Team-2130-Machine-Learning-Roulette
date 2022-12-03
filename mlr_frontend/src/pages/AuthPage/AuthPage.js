@@ -4,8 +4,7 @@ import './AuthPage.css';
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import Card from '../../components/Card/Card';
-import Signup from "./Signup";
-import Signin from "./Signin";
+import AuthTab from './AuthTab';
 
 const AuthPage = () => {
   return (
@@ -27,9 +26,7 @@ const AuthPage = () => {
       <div className="authentication_container">
         <Card className="authentication">
           <h2>Authentication Page</h2>
-          <hr />
-          <Signup />
-          <Signin />
+          <AuthTab />
         </Card>
       </div>
     </React.Fragment>
