@@ -18,6 +18,3 @@ def store_history(history):
     response = requests.post(url, json=history)
 
     return response.status_code
-
-
-
