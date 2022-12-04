@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import Button from '../../components/Button/Button';
 import UserPool from "./UserPool";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+import Upload from '../UploadPage/UploadPage';
+import {useNavigate } from "react-router-dom"; 
+
 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+ 
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -24,7 +29,8 @@ const Login = () => {
         user.authenticateUser(authDetails, {
             onSuccess: (data) => {
                 console.log("onSuccess: ", data);
-
+                navigate("/upload");
+                
 
             },
             onFailure: (err) => {
