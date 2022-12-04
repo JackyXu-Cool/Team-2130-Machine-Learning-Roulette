@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState();
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -13,6 +14,7 @@ const Signup = () => {
             //if user signup password not fit requirement, log error
             if (err) {
                 console.log(err);
+                setError("" + err);
             }
             console.log(data);
         });
@@ -33,6 +35,7 @@ const Signup = () => {
                 ></input>
 
                 <Button type="submit">Signup</Button>
+                {error?<label style={{ color: 'red'}}>{error}</label>:null}   
             </form>
 
         </div>

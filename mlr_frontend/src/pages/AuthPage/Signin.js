@@ -11,6 +11,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [error, setError] = useState();
  
 
     const onSubmit = (event) => {
@@ -35,6 +36,7 @@ const Login = () => {
             },
             onFailure: (err) => {
                 console.log("onFailure: ", err);
+                setError('Invalid Username or Password')
             }
         });
     };
@@ -54,6 +56,7 @@ const Login = () => {
                 ></input>
 
                 <Button type="submit">Login</Button>
+                {error?<label style={{ color: 'red'}}>{error}</label>:null}   
             </form>
 
         </div>
