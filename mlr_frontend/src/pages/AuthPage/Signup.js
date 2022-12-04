@@ -15,10 +15,20 @@ const Signup = () => {
             //if user signup password not fit requirement, log error
             if (err) {
                 console.log(err);
-                setError("" + err);
+                setSuccess();
+                if(err == "UsernameExistsException: An account with the given email already exists."){
+                    setError("The account already existed");
+                }else{
+                    setError("The Password requires"+ "\r\n" + "1.lowercase letters" +  "\r\n" +  "2.numbers" +  "\r\n" + "3.minimum length 8");
+                }
+                
+            }else{
+                console.log(data);
+                setError();
+                setSuccess("Success! Please confim your email account.")
+
             }
-            console.log(data);
-            setSuccess("Success! Please confim your email account.")
+            
         });
     };
 
