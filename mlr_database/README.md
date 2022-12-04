@@ -21,16 +21,15 @@ There are currently two endpoints exposed to REST API
 
 #### gethistory
 - Endpoint: https://6ub4cm85uh.execute-api.us-east-1.amazonaws.com/trainingdata/gethistory
-- Access this endpoint in `get_training_result` in `get_history.py`
+- Access this endpoint in `get_training_result` in `get_history.py`, , the input to the method would be user's email, which must be a string
 - **Parameter**
     ```python
     email -> string
     ```
 - **Return**
-    - The returned result of this function will be a list, with the entry of the list in the following order.
+    - The returned result of this function will be a list, with the entry of the list in the following order. The entire list will be ordered by time_stamp, **from most recent history to least recent history**.
     ```python
     [time_stamp : string, 
-    training_id: int,
     models: string,         // ex: "KNN, SVM", which each separated by a comma
     epoch: int,
     training_percent: int
@@ -42,15 +41,13 @@ There are currently two endpoints exposed to REST API
     
 #### storehistory
 - Endpoint: https://6ub4cm85uh.execute-api.us-east-1.amazonaws.com/trainingdata/storehistory
-- Access this endpoint with `store_history` method in `store_history.py`, the input to the method would be user's email, which must be a string
+- Access this endpoint with `store_history` method in `store_history.py`
 - **Parameter**
 The input to the function must be in the following format
-    - **Note: the `training_id` must be a unique integer, I would recommend using uuid as input to training_id**
     ```python
     {
     "email": "demo@gmail.com",  -> string
     "time_stamp": "2022-06-20 16:06:13.176788", -> string of date time
-    "training_id": 17,  -> int
     "models": "model1, model2",   -> string separated by commas
     "random_seed": 12,  -> double
     "epoch": 1, -> int
@@ -76,7 +73,6 @@ The input to the function must be in the following format
     - The returned result of this function will be a list, with the entry of the list in the following order.
     ```python
     [time_stamp : string, 
-    training_id: int,
     models: string,         // ex: "KNN, SVM", which each separated by a comma
     epoch: int,
     training_percent: int
@@ -90,7 +86,6 @@ The input to the function must be in the following format
     {
     "email": "demo@gmail.com",  -> string
     "time_stamp": "2022-06-20 16:06:13.176788", -> string of date time
-    "training_id": 17,  -> int
     "models": "model1, model2",   -> string separated by commas
     "random_seed": 12,  -> double
     "epoch": 1, -> int
