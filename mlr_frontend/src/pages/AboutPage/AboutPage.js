@@ -16,7 +16,7 @@ const HomePage = () => {
                         <Nav.Link className="nav-content-text" href="/about" >
                             About
                         </Nav.Link>
-                        <Nav.Link className="nav-content-text" href="/auth" disabled="true">
+                        <Nav.Link className="nav-content-text" href="/auth" >
                             Log In
                         </Nav.Link>
                         <Nav.Link className="nav-content-text" href="/upload">
