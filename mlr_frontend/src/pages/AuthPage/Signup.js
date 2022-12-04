@@ -7,6 +7,7 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
+    const [success, setSuccess] = useState();
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -14,9 +15,20 @@ const Signup = () => {
             //if user signup password not fit requirement, log error
             if (err) {
                 console.log(err);
-                setError("" + err);
+                setSuccess();
+                if(err == "UsernameExistsException: An account with the given email already exists."){
+                    setError("The account already existed");
+                }else{
+                    setError("The Password requires"+ "\r\n" + "1.lowercase letters" +  "\r\n" +  "2.numbers" +  "\r\n" + "3.minimum length 8");
+                }
+                
+            }else{
+                console.log(data);
+                setError();
+                setSuccess("Success! Please confim your email account.")
+
             }
-            console.log(data);
+            
         });
     };
 
@@ -35,7 +47,8 @@ const Signup = () => {
                 ></input>
 
                 <Button type="submit">Signup</Button>
-                {error?<label style={{ color: 'red'}}>{error}</label>:null}   
+                {error?<label style={{ color: 'red'}}>{error}</label>:null}
+                {success?<label style={{ color: 'green'}}>{success}</label>:null}     
             </form>
 
         </div>
