@@ -1,29 +1,14 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import CustomNavBar from '../../components/CustomNavBar/CustomNavBar';
 
 import './HomePage.css';
 
 // TODO: Log In button is disabled for now.
 const HomePage = () => {
+  const navElem = [{"title": "About", "href":"/about"}, {"title": "Log In", "href":"/auth"}, {"title": "Upload", "href":"/upload"} ];
   return (
     <div className="main">
-      <Navbar collapseOnSelect fixed="top" expand="sm" bg="dark" variant="dark">
-        <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav" />
-          <Nav className="nav-content">
-            <Nav.Link className="nav-content-text" href="/about" >
-              About
-            </Nav.Link>
-            <Nav.Link className="nav-content-text" href="/auth">
-              Log In
-            </Nav.Link>
-            <Nav.Link className="nav-content-text" href="/upload">
-              Upload
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+      <CustomNavBar elems={navElem} />
       <div className="body">
         <p>Machine Learning Roulette</p>
       </div>
