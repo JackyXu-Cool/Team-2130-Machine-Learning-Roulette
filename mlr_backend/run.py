@@ -6,7 +6,7 @@ from kmeans.kmeans import kMeans
 from naivebayes.naivebayes import naive_bayes
 from dtree.dtree import decisionTreeClassifier
 from split import splitDataset
-from hierCluster import generateHierClustingModel, predictHierClustering
+from hierCluster.hierCluster import generateHierClustingModel, predictHierClustering
 import numpy as np
 import metrics
 import json
