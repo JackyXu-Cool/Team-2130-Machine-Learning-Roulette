@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    //Error Message
     const [error, setError] = useState();
 
     const onSubmit = (event) => {
@@ -35,6 +36,7 @@ const Signup = () => {
                 ></input>
 
                 <Button type="submit">Signup</Button>
+                {/*If user input password is wrong, showed the error message */}
                 {error?<label style={{ color: 'red'}}>{error}</label>:null}   
             </form>
 
