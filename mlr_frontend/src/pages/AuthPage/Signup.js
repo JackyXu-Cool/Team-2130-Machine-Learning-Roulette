@@ -7,6 +7,7 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState();
+    const [success, setSuccess] = useState();
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -17,6 +18,7 @@ const Signup = () => {
                 setError("" + err);
             }
             console.log(data);
+            setSuccess("Success! Please confim your email account.")
         });
     };
 
@@ -35,7 +37,8 @@ const Signup = () => {
                 ></input>
 
                 <Button type="submit">Signup</Button>
-                {error?<label style={{ color: 'red'}}>{error}</label>:null}   
+                {error?<label style={{ color: 'red'}}>{error}</label>:null}
+                {success?<label style={{ color: 'green'}}>{success}</label>:null}     
             </form>
 
         </div>
