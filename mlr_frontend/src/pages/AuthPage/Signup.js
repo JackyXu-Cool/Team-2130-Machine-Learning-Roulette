@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    //Error Message
     const [error, setError] = useState();
     const [success, setSuccess] = useState();
 
@@ -49,6 +50,7 @@ const Signup = () => {
                 <Button type="submit">Signup</Button>
                 {error?<label style={{ color: 'red'}}>{error}</label>:null}
                 {success?<label style={{ color: 'green'}}>{success}</label>:null}     
+
             </form>
 
         </div>
