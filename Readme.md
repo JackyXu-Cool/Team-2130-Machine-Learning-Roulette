@@ -58,6 +58,25 @@ Haoran (Marty) Zhao: hzhao353@gatech.edu (Role: Information Seeker)
 ### Bug Fixes
 1. Large margin in "Upload: step2"
 
+## Installation Guide
+1. Install Git https://github.com/git-guides/install-git <br />
+Git is a distributed version control system, tracking changes in any set of files. In this project, we use git to do the version control.
+```
+git clone https://github.com/JackyXu-Cool/Team-2130-Machine-Learning-Roulette
+```
+2. Install node and npm
+For our backend, we use [node.js](https://nodejs.org/en/download/) <nr />
+After node is installed, follow the instruction here to [install backend](https://github.com/JackyXu-Cool/Team-2130-Machine-Learning-Roulette/tree/master/mlr_backend)
+
+3. Install Frontend related package
+Follow the instruction [here](https://github.com/JackyXu-Cool/Team-2130-Machine-Learning-Roulette/tree/master/mlr_frontend)
+
+4. Database Integration
+The features we'd like to have are fully set up but we don't integrate it into our application yet. Follow the guide here to learn more about [how our database works](https://github.com/JackyXu-Cool/Team-2130-Machine-Learning-Roulette/tree/master/mlr_database)
+
+5. IDE installation
+It is strongly recommende to use a light-weighted IDE to run our application. For example, [Visual Studio Code](https://code.visualstudio.com/Download)
+
 
 # Client
 Jay Lofstead, Sandia National Laboratories
